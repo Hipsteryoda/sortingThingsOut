@@ -3,26 +3,26 @@ package com.example.sorting;
 public class SortingUtility {
 
 
-    public static <T extends Comparable<T>> void gnomeSort(T[] data) {
+    public static <T extends Comparable<T>> void gnomeSort(T[] a) {
 
       int pos = 0;
-      while (pos < data.length) {
-        if (pos == 0 || data[pos].compareTo(data[pos-1]) >= 0) {
+      while (pos < a.length) {
+        if (pos == 0 || a[pos].compareTo(a[pos-1]) >= 0) {
           pos++;
         } else {
-          swap(data, pos, pos-1);
+          swap(a, pos, pos-1);
           pos--;
         }
       }
     }
 
-    public static <T extends Comparable<T>> void cocktailShakerSort(T[] data) {
+    public static <T extends Comparable<T>> void cocktailShakerSort(T[] A) {
 
       boolean swapped = false;
       do {
-        for (int i = 0; i < data.length - 1; i++) {
-          if (data[i].compareTo(data[i+1]) > 0) {
-            swap(data, i, i+1);
+        for (int i = 0; i < A.length - 1; i++) {
+          if (A[i].compareTo(A[i+1]) > 0) {
+            swap(A, i, i+1);
             swapped = true;
           }
         }
@@ -32,9 +32,9 @@ public class SortingUtility {
         }
 
         swapped = false;
-        for (int i = data.length - 1; i > 0; i--) {
-          if (data[i].compareTo(data[i-1]) < 0) {
-            swap(data, i, i-1);
+        for (int i = A.length - 1; i > 0; i--) {
+          if (A[i].compareTo(A[i-1]) < 0) {
+            swap(A, i, i-1);
             swapped = true;
           }
         }
@@ -43,19 +43,19 @@ public class SortingUtility {
     }
 
 
-    public static <T extends Comparable<T>> void shellSort(T[] data) {
+    public static <T extends Comparable<T>> void shellSort(T[] a) {
 
       // Curia's gap sequence
       int[] gaps = {701, 301, 132, 57, 23, 10, 4, 1};
 
       for (int gap : gaps) {
-        for (int i = gap; i < data.length; i++) {
-          T temp = data[i];
+        for (int i = gap; i < a.length; i++) {
+          T temp = a[i];
           int j; // define before the for loop because of scope
-          for (j = i; j >= gap && data[j - gap].compareTo(temp) > 0; j -= gap) {
-            data[j] = data[j - gap];
+          for (j = i; j >= gap && a[j - gap].compareTo(temp) > 0; j -= gap) {
+            a[j] = a[j - gap];
           }
-          data[j] = temp;
+          a[j] = temp;
         }
       }
     }
